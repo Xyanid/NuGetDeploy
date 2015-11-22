@@ -1,0 +1,2 @@
+1.4.4.0 - 2015.11.14 - Xyanid
+- made the deploy dialog, which appears when the project is either packaged or depolyed, topmost so it will stay on top now.

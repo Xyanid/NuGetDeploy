@@ -1,0 +1,57 @@
+1.4.4.0 - 2015.11.14 - Xyanid
+- made the deploy dialog, which appears when the project is either packaged or depolyed, topmost so it will stay on top now.
+
+1.4.3.0 - 2015.10.21 - Xyanid
+- fixed a bug that would prevent to add new nuget servers and change the apikey if it was set to an empty string
+
+1.4.2.0 - 2015.10.14 - Xyanid
+- fixed a bug that would prevent the usage for visual basic when reading the assembly
+
+1.4.1.0 - 2015.10.04 - Xyanid
+- fixed a bug that would not include # characters for the documentation file
+- fixed a bug that would not create the documentation file when the project was build
+
+1.4.0.0 - 2015.10.03 - Xyanid
+- added the ability to include xml documentation files if the project has them set up in the active configuration
+
+1.3.0.0 - 2015.09.18 - Xyanid
+- removed old conversion of settings froms from 0.0.11.0, 0.12.0.0, 0.13.1.0 to the latest version hence its not possible to upgrade from those version anymore and keep your settings 
+- moved some code to external libraries to make the extension more reuseable
+- added encryption of the api keys for the nuget servers in the configuration file
+- added images for the Metadata usage configuration in the options as well as in the deploy dialog
+- added the ability to determine if other nuget dependencies will be save with or without their targetFramework, meaning they will be placed either in the fallback group or the framework group
+- added a new tab in the deploy dialog which lets you determine which other nuget dependencies will be used and in which group they will be contained
+- fixed a bug that would create an incorrect version string if the informational part of the version consisted only of spaces
+
+1.2.0.0 - 2015.08.13 - Xyanid
+- added new option to selected which assembly info attribute is used to determine the version
+- moved general - projects options to project - general since it was too confusing
+- added conversion of old settings to the new format
+- Project Config... option is now only available if the settings of the project you want to configure have been set to be project based. 
+  Eventhough this may seem counterintuitive its better since all the configurations you do via Tools -> Options... will be stored in the user based location (that is your documents folder) while the project based configurations can now only be done via the Project Config... option
+
+1.1.0.0 - 2015.08.09 - Xyanid
+- added support for visual studio 2015, also included the extension to be installed on the community edition
+- fixed some spelling mistakes
+- "Save Back" is now named "Save back in project"
+- fixed a bug that would allow to package or deploy after preparing the projects, eventhough it should not have been possible
+- added NuGet Targets for .Net 4.5.2 and .Net 4.6
+- added the ability to set a nuget server which is initialy selected when deploying
+  - this works as follows
+  - you can select if you want this option to be either: 
+	- None = which mean the first server in the list is used
+	- Default = means that the default server in the list is used, note that there can only be one server, so when applying this to a server the previous default on is set to not being the default
+	- Last Used = means that the server that has been last used for deployment is used, note this means that the server you TRYED to deploy to is used, so even if the deploy failed to that server it will be used
+- changed icons of info and warning images, now being flat style
+
+1.0.0.0
+- added the ability to filter out development dependencies of referenced nuget dependencies, there is a new option page specifically for this now
+
+0.15.1.0
+- fixed a bug when saving multi line strings back to the assembly description field
+
+0.15.0.0
+- added the ability to package a project without deploying it
+- added the ability to create missing nuget targets while analysing the project, 
+  - this means that there will now be a dialog which promts you to enter a name and then automatically creates the nuget target based on that
+  - after that the project will be analyse again and this time around there will be no error

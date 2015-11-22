@@ -1,0 +1,889 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xyanid.Common</name>
+    </assembly>
+    <members>
+        <member name="M:Xyanid.Common.Classes.CollectionSelector`2.Add(`0,`1)">
+            <summary>
+            adds the given keyvaluepair to the list of data
+            </summary>
+            <param name="data">data to be added, key must not be already in the list</param>
+        </member>
+        <member name="M:Xyanid.Common.Classes.CollectionSelector`2.RemoveByKey(`0)">
+            <summary>
+            removes the data with the given key
+            </summary>
+            <param name="key">key to be used</param>
+            <returns>true if the key was contained and the data has been removed, otherwise false</returns>
+        </member>
+        <member name="M:Xyanid.Common.Classes.CollectionSelector`2.ContainsValue(`1)">
+            <summary>
+            determines if the given value is contained in the data
+            </summary>
+            <param name="value">value to look for</param>
+            <returns>true if the value is contained otherwise false</returns>
+        </member>
+        <member name="M:Xyanid.Common.Classes.CollectionSelector`2.ContainsKey(`0)">
+            <summary>
+            determines if the given key is contained in the data
+            </summary>
+            <param name="key"></param>
+            <returns>true if the key is contained otherwise false</returns>
+        </member>
+        <member name="M:Xyanid.Common.Classes.CollectionSelector`2.GetValue(`0)">
+            <summary>
+            gets the value for the given key
+            </summary>
+            <param name="key">key to use</param>
+            <returns>the value of the key</returns>
+        </member>
+        <member name="M:Xyanid.Common.Classes.CollectionSelector`2.GetKey(`1)">
+            <summary>
+            gets the key for the given value
+            </summary>
+            <param name="value">value to use</param>
+            <returns>the key of the value</returns>
+        </member>
+        <member name="T:Xyanid.Common.Classes.VersionComponentInfo">
+            <summary>
+            this class hold the version component as well as its value
+            </summary>
+        </member>
+        <member name="P:Xyanid.Common.Classes.VersionComponentInfo.Component">
+            <summary>
+            the version component the info refers to
+            </summary>
+        </member>
+        <member name="P:Xyanid.Common.Classes.VersionComponentInfo.ValueType">
+            <summary>
+            the type of the value that is provided
+            </summary>
+        </member>
+        <member name="P:Xyanid.Common.Classes.VersionComponentInfo.Value">
+            <summary>
+            the actual value of the version component
+            </summary>
+        </member>
+        <member name="M:Xyanid.Common.Classes.VersionComponentInfo.GetValue``1">
+            <summary>
+            returns the value as the given type
+            </summary>
+            <typeparam name="TValue">type that should be returned</typeparam>
+            <returns>value in the expected type</returns>
+        </member>
+        <member name="M:Xyanid.Common.Classes.VersionComponentInfo.SetValue``1(``0)">
+            <summary>
+            sets the given value of the given type and changes the type if possible
+            </summary>
+            <typeparam name="TValue">type of the value</typeparam>
+            <param name="value">value to set</param>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.ProcessState.None">
+            <summary>
+            meaning the process has not been started
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.ProcessState.InProgress">
+            <summary>
+            meaning teh process is being progressed
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.ProcessState.Finished">
+            <summary>
+            meaing the process has finished
+            </summary>
+        </member>
+        <member name="T:Xyanid.Common.Definitions.Enumerations.VersionComponent">
+            <summary>
+            determines how a version can be contructed, hence what parts it has
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.VersionComponent.Major">
+            <summary>
+            meaning the major part of the version
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.VersionComponent.Minor">
+            <summary>
+            meaning the minor part of the version
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.VersionComponent.Revision">
+            <summary>
+            meaning the revision part of the version
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.VersionComponent.Build">
+            <summary>
+            meaning the build part of the version
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Definitions.Enumerations.VersionComponent.Informational">
+            <summary>
+            meaning the informational part of the version
+            </summary>
+        </member>
+        <member name="T:Xyanid.Common.Interfaces.IValidateable">
+            <summary>
+            used to validate BaseEntities and BaseEntityContainers
+            </summary>
+        </member>
+        <member name="M:Xyanid.Common.Interfaces.IValidateable.Validate">
+            <summary>
+            returnes an error code which is to be interpreted, 0 meaning there is no error
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Xyanid.Common.Security.AESEncryptor">
+            <summary>
+            This classes provides AES De/Encryption functionality
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Security.AESEncryptor._encryptor">
+            <summary>
+            determines the encrpytor to use
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Security.AESEncryptor._decryptor">
+            <summary>
+            determines the decryptor to use
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Security.AESEncryptor._encoder">
+            <summary>
+            determines the encoder to use
+            </summary>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.#ctor(System.Security.Cryptography.SymmetricAlgorithm,System.Text.Encoding,System.Byte[],System.Byte[])">
+            <summary>
+            creates a new instance of the AESEncrptor using the given parameters
+            </summary>
+            <param name="algorithm">algorithm to use, must not be null</param>
+            <param name="encoder">encoder to use, must not be null</param>
+            <param name="key">key to use, must not be null</param>
+            <param name="vector">vector to use, must not be null</param>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.#ctor(System.Security.Cryptography.SymmetricAlgorithm,System.Text.Encoding)">
+            <summary>
+            creates a new instance of the AESEncryptor using UTF8Encoding as well as the default Key and Vector
+            </summary>
+            <param name="algorithm">algorithm to use must not be null</param>
+            <param name="encoder">encoder to use, must not be null</param>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.#ctor(System.Security.Cryptography.SymmetricAlgorithm)">
+            <summary>
+            creates a new instance of the AESEncryptor using UTF8Encoding as well as the default Key and Vector
+            </summary>
+            <param name="algorithm">algorithm to use, must not be null</param>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.#ctor">
+            <summary>
+            creates a new instance of the AESEncryptor using RijndaelManaged and UTF8Encoding as well as the default Key and Vector
+            </summary>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.Encrypt(System.String)">
+            <summary>
+            encrypts the given string
+            </summary>
+            <param name="value">string to encrypt</param>
+            <returns>encrypted string of the input</returns>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.Decrypt(System.String)">
+            <summary>
+            decrypts the given string
+            </summary>
+            <param name="value">string to decrypt</param>
+            <returns>decrypts string of the input</returns>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.Encrypt(System.Byte[])">
+            <summary>
+            encrypts the given buffer
+            </summary>
+            <param name="buffer">buffer to use, must not be null</param>
+            <returns>encrypts array of the buffer</returns>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.Decrypt(System.Byte[])">
+            <summary>
+            decrypts the given buffer
+            </summary>
+            <param name="buffer">buffer to use, must not be null</param>
+            <returns>decrypted array of the buffer</returns>
+        </member>
+        <member name="M:Xyanid.Common.Security.AESEncryptor.Transform(System.Byte[],System.Security.Cryptography.ICryptoTransform)">
+            <summary>
+            transofrm the given buffer using the given crypto transformation
+            </summary>
+            <param name="buffer">buffer to use, must not be null</param>
+            <param name="transform">transformation to use must not be null</param>
+            <returns>transformed byte array</returns>
+        </member>
+        <member name="T:Xyanid.Common.Util.IOUtil.ReadLine">
+            <summary>
+            delegate to be called when a line is read, the objs params allow to provide additional elements to use
+            <para>objs can be used to avoid making an object available outside of the current scope</para>
+            </summary>
+            <param name="line">line that has been read</param>
+            <param name="objs">additional objects to use</param>
+        </member>
+        <member name="T:Xyanid.Common.Util.IOUtil.ReadWriteLine">
+            <summary>
+            delegate to be called when a line is read and shall be written back, the objs params allow to provide additional elements to use
+            <para>objs can be used to avoid making an object available outside of the current scope</para>
+            </summary>
+            <param name="line">line that has been read</param>
+            <param name="objs">additional objects to use</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.IOUtil.ReadLines(System.String,Xyanid.Common.Util.IOUtil.ReadLine,System.Object[])">
+            <summary>
+            reads all the lines from the given file, all lines are read in an array first and then processed
+            </summary>
+            <param name="filepath">file path to use, must not be null or empty</param>
+            <param name="callback">callback to use when a line is read, must not be null</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.IOUtil.ReadAndWriteLines(System.String,System.Boolean,Xyanid.Common.Util.IOUtil.ReadWriteLine,System.Object[])">
+            <summary>
+            reads and writes back all the lines from the given file, all lines are read in an array first and then processed
+            <para>note: if the returned line is empty it will not be used</para>
+            </summary>
+            <param name="filePath">file path to use, must not be null or empty</param>
+            <param name="keepEmptyLines">determiens whether empty lines will be keept in the new file</param>
+            <param name="callback">callback to use when a line is read, must not be null</param>
+            <param name="objs">additional objects to use for the callback</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.IOUtil.ReadLinesStream(System.String,Xyanid.Common.Util.IOUtil.ReadLine,System.Object[])">
+            <summary>
+            reads all the lines from the given file, the lines are read using a stream
+            </summary>
+            <param name="filePath">file path to use, must not be null or empty</param>
+            <param name="callback">callback to use when a line is read, must not be null</param>
+            <param name="objs">additional objects to use for the callback</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.IOUtil.ReadAndWriteLinesStream(System.String,System.Boolean,System.String,System.Boolean,Xyanid.Common.Util.IOUtil.ReadWriteLine,System.Object[])">
+            <summary>
+            reads and writes back all the lines from the given file, the lines are read using a stream
+            <para>for writing a temporary file will be created, thus an Argumment Exception will be thrown if the fill exists already and canOverride is false</para>
+            </summary>
+            <param name="filePath">file path to use, must not be null or empty</param>
+            <param name="keepEmptyLines">determiens whether empty lines will be keept in the new file</param>
+            <param name="tmpFileName">name of the temporay file that will be created, must not be null or empty</param>
+            <param name="canOverrideTemp">determiens whether the temporary file can be overriden if it exists alread</param>
+            <param name="callback">callback to use when a line is read, must not be null</param>
+            <param name="objs">additional objects to use for the callback</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.AssertUtil.NotNull``1(``0,System.String,System.Boolean)">
+            <summary>
+            asserts that the given obj is ot null, 
+            <para>basically just so that I dont have to write 7 fucking lines of code everytime if want to make sure a given parameter is not null,</para> 
+            <para>but give the user to option to prevent exceptions being thrown, but oh well</para>
+            </summary>
+            <typeparam name="T">type of the object to be checked</typeparam>
+            <param name="obj">object to be checked</param>
+            <param name="name">name of the parameter it was called</param>
+            <param name="throwException">deteremines whether to throw an exception if the object is null</param>
+            <returns>true if the object is not null, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.CommandUtil.ExecuteCommand(System.String)">
+            <summary>
+            checks if the nuGet.exe has been set as a in the path environment variable
+            </summary>
+            <returns>true if the nuGet.exe cann be called from the command line, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.CommandUtil.ExecuteCommand(System.String,System.String[],System.String@,System.String@)">
+            <summary>
+            warps ExecuteCommands(string[], out string, out string), to execute a single command
+            </summary>
+            <param name="command">command to execut, must not be null or empty</param>
+            <param name="result"></param>
+            <param name="error"></param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Xyanid.Common.Util.CommandUtil.ExecuteCommands(System.String[],System.String[],System.String@,System.String@)" -->
+        <member name="M:Xyanid.Common.Util.ConfigUtil.getServiceConfigurations(System.Collections.Generic.IList{System.String},System.String)">
+            <summary>
+            returns a dictionary which contains the configuration for each given service from the given string representation of a xml config file 
+            <para>if no service could be configured, null will be returned</para>
+            </summary>
+            <param name="services">list of service names (the name must be equal to the contract attribute in the endpoint XML tag in order to be configured correctly e.g. Webservice.IExternalWebservice), must not be null</param>
+            <param name="xDoc">string representation of the config file, must not be null</param>
+            <returns>dictionary with the configuration for each service or null</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ConfigUtil.getServiceConfigurations(System.Collections.Generic.IList{System.String},System.Xml.Linq.XDocument)">
+            <summary>
+            returns a dictionary which contains the configuration for each given service from the given xdocument 
+            <para>if no service could be configured, null will be returned</para>
+            </summary>
+            <param name="services">list of service names (the name must be equal to the contract attribute in the endpoint XML tag in order to be configured correctly e.g. Webservice.IExternalWebservice), must not be null</param>
+            <param name="xDoc">document that represents the config file, must not be null</param>
+            <returns>dictionary with the configuration for each service or null</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ConfigUtil.getBasicHttpBindings(System.String)">
+            <summary>
+            returns a list of BasicHttpBindings from the given string representation of an xml config file
+            </summary>
+            <param name="doc">string representation of the config file to use</param>
+            <returns>list of all basicHttpBindings found in the document if any or null</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ConfigUtil.getBasicHttpBindings(System.Xml.Linq.XDocument)">
+            <summary>
+            returns a list of BasicHttpBindings from the given document
+            </summary>
+            <param name="xDoc">document that represents the config file, must not be null</param>
+            <returns>list of all basicHttpBindings found in the document if any or null</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ConfigUtil.SetProperties``1(System.Collections.Generic.IEnumerable{System.Xml.Linq.XAttribute},``0)">
+            <summary>
+            set the properties of a given object when one of the given xattributes matches the properties name
+            </summary>
+            <typeparam name="T">Type of the given object</typeparam>
+            <param name="xAttributes">list of attributes to use, must not be null or empty</param>
+            <param name="obj">obj whose properties shall be set, must not be null</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.ConvertUtil.ToByteArray``1(``0)">
+            <summary>
+            converts a given object into a byte array
+            </summary>
+            <typeparam name="T">type of the given object</typeparam>
+            <param name="obj">object to use, must not be null</param>
+            <returns>the byte array of the givne object</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ConvertUtil.ByteArrayToObject``1(System.Byte[])">
+            <summary>
+            converts a given byte array in to the desired object
+            </summary>
+            <typeparam name="T">type of the object to convert into</typeparam>
+            <param name="bytes">bytes to use, must not be null or empty</param>
+            <returns>the object presented by the given bytes</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.FlagsUtil.IsSet``1(``0,``0)">
+            <summary>
+            checks whether the given flag is set in the given set of flags
+            </summary>
+            <typeparam name="T">enum type of the flags</typeparam>
+            <param name="flags">flags to be checked</param>
+            <param name="flag">flag which will be checked if it is checked</param>
+            <returns>true if the flag is set, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.FlagsUtil.Set``1(``0@,``0)">
+            <summary>
+            sets a the given flag on the given flags
+            </summary>
+            <typeparam name="T">enum type of the flag</typeparam>
+            <param name="flags">flags which will be used to set</param>
+            <param name="flag">flag that will be set</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.FlagsUtil.Unset``1(``0@,``0)">
+            <summary>
+            unsets the given flag on the given falgs
+            </summary>
+            <typeparam name="T">enum type of the flag</typeparam>
+            <param name="flags">flags which will be used to unset</param>
+            <param name="flag">flag that will be unset</param>
+        </member>
+        <member name="F:Xyanid.Common.Util.ImageUtil.jfif">
+            <summary>
+            jfif (jpeg) bytes
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.ImageUtil.exif">
+            <summary>
+            exif (jpeg) bytes
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.ImageUtil.tiff">
+            <summary>
+            tiff bytes
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.ImageUtil.png">
+            <summary>
+            png bytes
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.ImageUtil.bmp">
+            <summary>
+            bmp bytes
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.ImageUtil.gif">
+            <summary>
+            gif bytes
+            </summary>
+        </member>
+        <member name="M:Xyanid.Common.Util.ImageUtil.DetermineImageFormat(System.Byte[])">
+            <summary>
+            determines the image format of the given file (if the file is an image that is)
+            </summary>
+            <param name="file">file to check</param>
+            <returns>the imageformat of the file</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.Clone``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            clones the given list of objects, objects in the list must implement the ICloneable interface
+            </summary>
+            <typeparam name="T">type of the objects in the list</typeparam>
+            <param name="a">list of elements to be cloned, must not be null</param>
+            <returns>new list of cloned elements</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.CloneNoException``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            clones the given list of objects, objects in the list must implement the ICloneable interface
+            </summary>
+            <typeparam name="T">type of the objects in the list</typeparam>
+            <param name="a">list of elements to be cloned</param>
+            <returns>new list of cloned elements</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.Clone``1(System.Collections.Generic.IList{``0},System.Boolean)">
+            <summary>
+            clones the given list of objects, objects in the list must implement the ICloneable interface
+            </summary>
+            <typeparam name="T">type of the objects in the list</typeparam>
+            <param name="a">list of elements to be cloned</param>
+            <param name="throwException">determines whether to throw an exception if a is null, 
+            <para>only usefull if either a can be null but you dont want an exception to be thrown</para>
+            </param>
+            <returns>new list of cloned elements</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsOnce``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            checks if at least one element from list a is also in b
+            </summary>
+            <typeparam name="T">type of the elements in the list</typeparam>
+            <param name="a">list of elements that will be used, must not be null</param>
+            <param name="b">list of elements that will be used, must not be null</param>
+            <returns>true if at least one element from a is also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsOnceNoExcpetion``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            checks if at least one element from list a is also in b
+            </summary>
+            <typeparam name="T">type of the elements in the list</typeparam>
+            <param name="a">list of elements that will be used</param>
+            <param name="b">list of elements that will be used</param>
+            <returns>true if at least one element from a is also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsOnce``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Boolean)">
+            <summary>
+            checks if at least one element from list a is also in b
+            </summary>
+            <typeparam name="T">type of the elements in the list</typeparam>
+            <param name="a">list of elements that will be used</param>
+            <param name="b">list of elements that will be used</param>
+            <param name="throwException">determines whether to throw an exception if either a or b is null, 
+            <para>only usefull if either a or b can be null but you dont want an exception to be thrown</para>
+            </param>
+            <returns>true if at least one element from a is also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsAll``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            checks if all elements form list a are also in b
+            <para>note: lists must be of equal size</para>
+            </summary>
+            <typeparam name="T">the type of the elements in the list</typeparam>
+            <param name="a">list of elements to be used as reference, must not be null</param>
+            <param name="b">list of elements which must contain all the elements form a, must not be null</param>
+            <returns>true if all elements from a are also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsAllNoException``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            checks if all elements form list a are also in b
+            <para>note: list must be of equal size</para>
+            </summary>
+            <typeparam name="T">the type of the elements in the list</typeparam>
+            <param name="a">list of elements to be used as reference</param>
+            <param name="b">list of elements which must contain all the elements form a</param>
+            <returns>true if all elements from a are also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsAll``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Boolean)">
+            <summary>
+            checks if all elements form list a are also in b
+            </summary>
+            <typeparam name="T">the type of the elements in the list</typeparam>
+            <param name="a">list of elements to be used as reference, must not be null</param>
+            <param name="b">list of elements which must contain all the elements form a, must not be null</param>
+            <param name="equalSize">determines if both lists must have the same size</param>
+            <returns>true if all elements from a are also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsAllNoException``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Boolean)">
+            <summary>
+            checks if all elements form list a are also in b
+            </summary>
+            <typeparam name="T">the type of the elements in the list</typeparam>
+            <param name="a">list of elements to be used as reference</param>
+            <param name="b">list of elements which must contain all the elements form a</param>
+            <param name="equalSize">determines if both lists must have the same size</param>
+            <returns>true if all elements from a are also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.ContainsAll``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Boolean,System.Boolean)">
+            <summary>
+            checks if all elements form list a are also in b
+            </summary>
+            <typeparam name="T">the type of the elements in the list</typeparam>
+            <param name="a">list of elements to be used as reference</param>
+            <param name="b">list of elements which must contain all the elements form a</param>
+            <param name="equalSize">determines if both lists must have the same size</param>
+            <param name="throwException">determines whether to throw an exception if either a or b is null, 
+            <para>only usefull if either a or b can be null but you dont want an exception to be thrown</para>
+            </param>
+            <returns>true if all elements from a are also in b, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.Eliminate``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            eliminates the given list a and b against each other, meaning it will find all elements that are in a and b
+            <para>elements will be removed from a and b</para>
+            </summary>
+            <typeparam name="T">type of the elements in the lists</typeparam>
+            <param name="a">list of elements a to be used, must not be null</param>
+            <param name="b">list of elements b to be used, must not be null</param>
+            <returns>a list of all the elements that were in a and b, or null if none</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.EliminateUnchanged``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            eliminates the given list a and b against each other, meaning it will find all elements that are in a and b
+            <para>a and b will remain unchanged</para>
+            </summary>
+            <typeparam name="T">type of the elements in the lists</typeparam>
+            <param name="a">list of elements a to be used, must not be null</param>
+            <param name="b">list of elements b to be used, must not be null</param>
+            <returns>a list of all the elements that were in a and b, or null if none</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.EliminateNoException``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            eliminates the given list a and b against each other, meaning it will find all elements that are in a and b
+            <para>elements will be removed from a and b</para>
+            </summary>
+            <typeparam name="T">type of the elements in the lists</typeparam>
+            <param name="a">list of elements a to be used</param>
+            <param name="b">list of elements b to be used</param>
+            <returns>a list of all the elements that were in a and b, or null if none</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.EliminateUnchangedNoException``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            eliminates the given list a and b against each other, meaning it will find all elements that are in a and b
+            <para>a and b will remain unchanged</para>
+            </summary>
+            <typeparam name="T">type of the elements in the lists</typeparam>
+            <param name="a">list of elements a to be used</param>
+            <param name="b">list of elements b to be used</param>
+            <returns>a list of all the elements that were in a and b, or null if none</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.Eliminate``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            eliminates the given list a and b against each other, meaning it will find all elements that are in a and b
+            </summary>
+            <typeparam name="T">type of the elements in the lists</typeparam>
+            <param name="a">list of elements a to be used, must not be null</param>
+            <param name="remainingA">list of the elements that remained in a, can be null if not needed
+            <para>if provided, then a will be unchanged and element that would remain in a, will be contained in this list</para>
+            </param>
+            <param name="b">list of elements b to be used, must not be null</param>
+            <param name="remainingB">list of the elements that remained in b, can be null if not needed
+            <para>if provided, then b will be unchanged and element that would remain in b, will be contained in this list</para>
+            </param>
+            <returns>a list of all the elements that were in a and b, or null if none</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.EliminateNoException``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            eliminates the given list a and b against each other, meaning it will find all elements that are in a and b
+            </summary>
+            <typeparam name="T">type of the elements in the lists</typeparam>
+            <param name="a">list of elements a to be used</param>
+            <param name="remainingA">list of the elements that remained in a, can be null if not needed
+            <para>if provided, then a will be unchanged and element that would remain in a, will be contained in this list</para>
+            </param>
+            <param name="b">list of elements b to be used</param>
+            <param name="remainingB">list of the elements that remained in b, can be null if not needed
+            <para>if provided, then b will be unchanged and element that would remain in b, will be contained in this list</para>
+            </param>
+            <returns>a list of all the elements that were in a and b, or null if none</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.ListUtil.Eliminate``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0},System.Boolean)">
+            <summary>
+            eliminates the given list a and b against each other, meaning it will find all elements that are in a and b
+            </summary>
+            <typeparam name="T">type of the elements in the lists</typeparam>
+            <param name="a">list of elements a to be used</param>
+            <param name="remainingA">list of the elements that remained in a, can be null if not needed
+            <para>if provided, then a will be unchanged and element that would remain in a, will be contained in this list</para>
+            </param>
+            <param name="b">list of elements b to be used</param>
+            <param name="remainingB">list of the elements that remained in b, can be null if not needed
+            <para>if provided, then b will be unchanged and element that would remain in b, will be contained in this list</para>
+            </param>
+            <param name="throwException">determines whether to throw an exception if either a or b is null, 
+            <para>only usefull if either a or b can be null but you dont want an exception to be thrown</para>
+            </param>
+            <returns>a list of all the elements that were in a and b, or null if none</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.PropertyUtil.GetProperty``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            gets the property info using the given selector thus enabling typ safe search of properties on an object
+            </summary>
+            <typeparam name="T">type of the object on which to look for the property</typeparam>
+            <typeparam name="TValue">type of the property</typeparam>
+            <param name="selector">expression to be used (e.g. x => x.ProjectTitle)</param>
+            <returns>the propertyinfo if found</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.SecurityUtil.GetGuid(System.String,System.Text.Encoding)">
+            <summary>
+            returns the guid of the given string using the given encoding
+            </summary>
+            <param name="s">string to use, must not be null</param>
+            <param name="e">encoding to use, must not be null</param>
+            <returns>guid of the given string</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.SecurityUtil.GetGuid(System.String)">
+            <summary>
+            returns the guid of the given string
+            </summary>
+            <param name="s">string to use, must not be null</param>
+            <returns>guid of the given string</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.SecurityUtil.GetGuid(System.Byte[])">
+            <summary>
+            returns the guid of the given byte array
+            </summary>
+            <param name="b">byte array to use, must not be null</param>
+            <returns>guid of the given byte array</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.SecurityUtil.GetHash(System.Byte[],System.Byte[],System.String)">
+            <summary>
+            returns the calculated hash of the given value using the given algorithmname, also uses given salt if any
+            </summary>
+            <param name="value">value to use, must not be null or empty</param>
+            <param name="salt">salt to use, can be null if not needed</param>
+            <param name="algorithmName">algorithm name to use , must be one of the following [RIPEMD160, SHA1, SHA256, SHA384, SHA512]</param>
+            <returns>calculated hash of the given value</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.SecurityUtil.GetSalt(System.Int32)">
+            <summary>
+            generates random salt bytes of the given size
+            </summary>
+            <param name="size">amount of bytes to generates, values will be fit beween 1 and int.MaxValue</param>
+            <returns>generates salt</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.Substring(System.String,System.String,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            gets the substring from the first occurence of the given start string until the last occurence of the end string
+            <para>e.G. if the string is ABCDEFG, start = B, end = F then CDE will be returned</para>
+            </summary>
+            <param name="provided">string to be used</param>
+            <param name="start">string where to start</param>
+            <param name="includeStart">deteremines whether to include start as well</param>
+            <param name="end">string where to end</param>
+            <param name="includeEnd">determines whether to include the end as well</param>
+            <returns>a string from the given start until the end</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.Substring(System.String,System.Int32,System.Int32)">
+            <summary>
+            gets the substring from the start index until the end index (inclusiv)
+            <para>e.G. if the string is ABCDEFG, start = 2, end = 4 then CDE will be returned</para>
+            </summary>
+            <param name="provided">string to be used</param>
+            <param name="start">index where to start</param>
+            <param name="end">index where to end, will be included</param>
+            <returns>a string from the given start until the end index</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.Join(System.Object[])">
+            <summary>
+            joins the given values without a separator
+            </summary>
+            <param name="values">values to join</param>
+            <returns>joined values without any separator</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.CaseLetters(System.String,System.Boolean,System.Int32[])">
+            <summary>
+            cases the given source strings letters at the specificed positions either to upper or lower case
+            <para>note: if the positions contain invalid values, then thos values will be ignored</para>
+            </summary>
+            <param name="source">source string to use, must not be null or empty</param>
+            <param name="toUpper">determines whether the letters will be upper or lower cased</param>
+            <param name="positions">null based positions in the string to affect, must not be null</param>
+            <returns>the cased string of the given source string</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.ReplaceLastOccurrence(System.String,System.String,System.String)">
+            <summary>
+            replaces the last occurence of the given find with the given replace
+            </summary>
+            <param name="source">source to use</param>
+            <param name="find">string to look for</param>
+            <param name="replace">replacement to use</param>
+            <returns>the new string with the replacement</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.EqualsOrNullAndEmpty(System.String,System.String)">
+            <summary>
+            checks whether the given string a and b are equal or a is null and b is empty or a is empty and b is null
+            <para>this is supposed to be used when ever null and string.Empty can be seen as the same</para>
+            </summary>
+            <param name="a">string to be checked</param>
+            <param name="b">string to be checked</param>
+            <returns>true if a is null and b is empty or a is empty and b is null, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.MatchesWildcard(System.String,System.String)">
+            <summary>
+            determines if the given input is a match for the given wildcard
+            </summary>
+            <param name="input">input to use</param>
+            <param name="wildcard">wildcard to use</param>
+            <returns>true if the input is a match, false otherwise</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.WildcardToRegex(System.String)">
+            <summary>
+            converts the given wildcard string to a regular expression string
+            </summary>
+            <param name="wildcard">wildcard to be converted</param>
+            <returns>string with regular expression, or the original string if no * is contained</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.RemoveLineBreaks(System.String,System.String)">
+            <summary>
+            removes all the line breaks from the given string
+            </summary>
+            <param name="value">value to use, must not be null</param>
+            <returns>value without line breaks</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.CleanFilename(System.String)">
+            <summary>
+            cleans the given filename form all invalid characters
+            </summary>
+            <param name="filename">filename to clean</param>
+            <returns>the new cleaned filename or the original filename(only if its null or empty)</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.CaseLetter(System.String,System.Int32,System.Boolean)">
+            <summary>
+            returns a copy of the given string with the position letter set to upper or lowercase
+            </summary>
+            <param name="value">string whose character shall be changed</param>
+            <param name="position">position of the characte whose case shall be changed, must be within the given string</param>
+            <param name="uppercase">determines whether to turn the character to upper or lowercase</param>
+            <returns>new String with the given characters case changed</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.StringUtil.RemoveChars(System.String,System.Collections.Generic.IEnumerable{System.Char})">
+            <summary>
+            removes the given set of characters from the given string
+            </summary>
+            <param name="str">string to use, must not be null or empty</param>
+            <param name="toExclude">list of characters to remove, must not be null</param>
+            <returns>the new string with the removed chars</returns>
+        </member>
+        <member name="F:Xyanid.Common.Util.VersionUtil.VersionAutoIncrementIndicator">
+            <summary>
+            default VersionInformational Separator
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.VersionUtil.VersionInformationalSeparator">
+            <summary>
+            default VersionInformational Separator
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.VersionUtil.VersionSeparator">
+            <summary>
+            separator character used to devide the version in major, minor, revision and build
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.VersionUtil.VersionComponentOrder">
+            <summary>
+            determines the order of information within a version
+            </summary>
+        </member>
+        <member name="F:Xyanid.Common.Util.VersionUtil.VersionComponentOrderWithOutInformational">
+            <summary>
+            determines the order of information within a version
+            </summary>
+        </member>
+        <member name="M:Xyanid.Common.Util.VersionUtil.GetVersion(System.String,System.Collections.Generic.IList{Xyanid.Common.Definitions.Enumerations.VersionComponent},System.String)">
+            <summary>
+            tries to get the version information out of the given string
+            </summary>
+            <param name="version">string representing the version, must be of the format major.minor.revision.build - informational</param>
+            <returns>a hashset with the version information that could be gathered from the provides string</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.VersionUtil.IncreaseVersion(System.Collections.Generic.HashSet{Xyanid.Common.Classes.VersionComponentInfo},Xyanid.Common.Definitions.Enumerations.VersionComponent,System.Collections.Generic.IList{Xyanid.Common.Definitions.Enumerations.VersionComponent},System.Boolean)">
+            <summary>
+            increases the given version at the given part, may also increase parts before the given one if handleOverflow is activated and and overflow occurs
+            <para>e.g. (X represents the maximum) | version = 1.X.0.0 | part = Minor | handleOverflow = true | ==> version 2.0.0.0</para> 
+            </summary>
+            <param name="versions">version to increase, must not be null and have a length of 4</param>
+            <param name="component">part to increase, must not be Increment.None</param>
+            <param name="handleOverflow">determines whether overflow shall be handled</param>
+        </member>
+        <member name="M:Xyanid.Common.Util.VersionUtil.GetNextOrPreviousVersionComponent(System.Collections.Generic.HashSet{Xyanid.Common.Definitions.Enumerations.VersionComponent},Xyanid.Common.Definitions.Enumerations.VersionComponent,System.Collections.Generic.IList{Xyanid.Common.Definitions.Enumerations.VersionComponent},System.Boolean)">
+            <summary>
+            gets the next or previous version component fomr the given list of version if any
+            </summary>
+            <param name="versions"></param>
+            <param name="component"></param>
+            <param name="willGetNext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.VersionUtil.GetNextOrPreviousVersionComponent(Xyanid.Common.Definitions.Enumerations.VersionComponent,System.Collections.Generic.IList{Xyanid.Common.Definitions.Enumerations.VersionComponent},System.Boolean)">
+            <summary>
+            gets the next or previous version component for the givne version component if possible
+            if there is not next or previous version component available then a VersionComponentException is thrown
+            </summary>
+            <param name="component">component for which to get the next versione component</param>
+            <param name="willGetNext">determines if the next or previous component will be retrieved</param>
+            <returns>the next or previous version component for the given one</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.VersionUtil.CreateVersion(System.Collections.Generic.HashSet{Xyanid.Common.Classes.VersionComponentInfo},System.Collections.Generic.IList{Xyanid.Common.Definitions.Enumerations.VersionComponent},System.String)">
+            <summary>
+            creates a version string usingthe provided version component info
+            <para>the version component order deteremines in which order the component will be displayed</para>
+            </summary>
+            <param name="versions">version component infos which will be used, must not be null or empty and contain all the components which are also in the version component order</param>
+            <param name="versionComponentOrder">determines in which order the component will be displayed, can be null in which case VersionComponentOrder is used</param>
+            <param name="informationalSeparator">informational separator to use, can be null or empty in which case VersionInformationalSeparator is used</param>
+            <returns>string which contains the version</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.XmlUtil.Deserialize``1(System.String,System.Text.Encoding,System.Boolean)">
+            <summary>
+            deserializes the object at the given filePath
+            <para>note: this methods will rethrow exceptions when the stream or deserializsation encounters an error</para>
+            </summary>
+            <typeparam name="T">type of the object to be deserialized</typeparam>
+            <param name="filePath">filePath where the object resides</param>
+            <param name="encoding">encodingto use, if not provided UTF8Encoding will be used by default</param>
+            <param name="useMutex">determines whether to use a mutex of the filepath to ensure no other loading or saving is in progress</param>
+            <returns>the deserialized object if successful or null if useMutext is true and the file is already being deserialized</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.XmlUtil.Serialize``1(System.String,``0,System.Text.Encoding,System.Boolean)">
+            <summary>
+            serializes the given object at the given filepath
+            <para>note: this methods will rethrow exceptions when the stream or serializsation encounters an error</para>
+            </summary>
+            <typeparam name="T">type of the object to be serialized</typeparam>
+            <param name="filePath">filePath at which to serialize the object, must be a valid filePath
+            <para>if the directory does not exist it will be created</para>
+            </param>
+            <param name="obj">object to be serialized</param>
+            <param name="encoding">encodingto use, if not provided UTF8Encoding will be used by default</param>
+            <param name="useMutex">determines whether to use a mutex of the filepath to ensure no other loading or saving is in progress</param>
+            <returns>true if the object was successfully serialized or false if useMutex is true and the file is already being serialized</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.XmlUtil.ToString``1(``0)">
+            <summary>
+            serializes the given object into a string
+            </summary>
+            <typeparam name="T">type of the given object</typeparam>
+            <param name="obj">object to serialize, must not be null</param>
+            <returns>string representation of the object</returns>
+        </member>
+        <member name="M:Xyanid.Common.Util.XmlUtil.FromString``1(System.String)">
+            <summary>
+            deserializes the the given string into the desired object T
+            </summary>
+            <typeparam name="T">type of the desired object</typeparam>
+            <param name="value">string to use</param>
+            <returns>result of the string if successfull</returns>
+        </member>
+        <member name="E:Xyanid.Common.ViewModel.BaseViewModel.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Xyanid.Common.ViewModel.BaseViewModel.OnPropertyChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+    </members>
+</doc>

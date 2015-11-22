@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.1.0.0">
+  <GeneralOptions>
+    <MsBuildOptions>
+      <Paths>
+        <Path>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe</Path>
+        <Path>C:\Windows\Microsoft.NET\Framework64\v3.5\MSBuild.exe</Path>
+        <Path>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\MSBuild.exe</Path>
+        <Path>C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe</Path>
+        <Path>C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe</Path>
+        <Path>C:\Windows\Microsoft.NET\Framework\v2.0.50727\MSBuild.exe</Path>
+      </Paths>
+    </MsBuildOptions>
+    <NuGetOptions>
+      <ExePath>C:\Program Files (x86)\NuGet\NuGet.exe</ExePath>
+      <ServerUsage>LastUsed</ServerUsage>
+      <Servers>
+        <Server url="http://192.168.178.20/NugetServer" apiKey="b5a179b8-6eee-488d-8eb7-83237d478ca8" isPreferred="false" lastSuccessfulDeploy="2015-08-08T17:00:59.575841+02:00" lastAttemptedDeploy="2015-08-08T17:00:23.8161651+02:00" />
+        <Server url="https://www.nuget.org" apiKey="05c4628c-4e38-455e-89bd-3774e1f06e8e" isPreferred="true" lastSuccessfulDeploy="0001-01-01T00:00:00" lastAttemptedDeploy="0001-01-01T00:00:00" />
+        <Server url="http://5.189.129.174/Nuget" apiKey="b5a179b8-6eee-488d-8eb7-83237d478ca8" isPreferred="false" lastSuccessfulDeploy="2015-08-11T21:50:35.2556735+02:00" lastAttemptedDeploy="2015-08-11T21:50:33.3242152+02:00" />
+      </Servers>
+      <Targets>
+        <Target name="net451" moniker=".NETFramework,Version=v4.5.1" />
+        <Target name="net45" moniker=".NETFramework,Version=v4.5" />
+        <Target name="net40-client" moniker=".NETFramework,Version=v4.0,Profile=Client" />
+        <Target name="net40" moniker=".NETFramework,Version=v4.0" />
+        <Target name="net35-client" moniker=".NETFramework,Version=v3.5,Profile=Client" />
+        <Target name="net35" moniker=".NETFramework,Version=v3.5" />
+        <Target name="net30" moniker=".NETFramework,Version=v3.0" />
+        <Target name="net20" moniker=".NETFramework,Version=v2.0" />
+        <Target name="sl5" moniker="Silverlight,Version=v5.0" />
+        <Target name="sl4" moniker="Silverlight,Version=v4.0" />
+        <Target name="sl3" moniker="Silverlight,Version=v3.0" />
+        <Target name="portable-net45+sl5" moniker=".NETPortable,Version=v4.0,Profile=Profile24" />
+        <Target name="portable-net403+sl5" moniker=".NETPortable,Version=v4.0,Profile=Profile19" />
+        <Target name="portable-net40+sl5" moniker=".NETPortable,Version=v4.0,Profile=Profile14" />
+        <Target name="portable-net45+sl4" moniker=".NETPortable,Version=v4.0,Profile=Profile23" />
+        <Target name="portable-net403+sl4" moniker=".NETPortable,Version=v4.0,Profile=Profile18" />
+        <Target name="portable-net40+sl4" moniker=".NETPortable,Version=v4.0,Profile=Profile3" />
+        <Target name="test" moniker=".NETPortable,Version=v4.0,Profile=Profile4" />
+        <Target name="net452" moniker=".NETFramework,Version=v4.5.2" />
+        <Target name="net46" moniker=".NETFramework,Version=v4.6" />
+      </Targets>
+    </NuGetOptions>
+    <ProjectOptions>
+      <ProjectOption identifier="CPP" storage="Project" filename="sumthing else" />
+      <ProjectOption identifier="CS" storage="User" filename="test.y" />
+      <ProjectOption identifier="VB" storage="User" />
+    </ProjectOptions>
+  </GeneralOptions>
+  <ProjectOptions>
+    <ProjectOption identifier="CPP">
+      <GeneralOptions>
+        <Increment>Major</Increment>
+        <HandleIncrementOverflow>false</HandleIncrementOverflow>
+      </GeneralOptions>
+      <MsBuildOptions>
+        <Usage>
+          <Optimize useage="Project" value="false" />
+          <DebugConstants useage="None" />
+          <DebugInfo useage="Project" />
+        </Usage>
+      </MsBuildOptions>
+      <NuGetOptions>
+        <GeneralOptions>
+          <DependencyUsage>Any</DependencyUsage>
+        </GeneralOptions>
+        <NuSpecOptions>
+          <Metadata>
+            <Id use="false" saveBack="false" />
+            <Version use="false" saveBack="false" />
+            <Title use="false" saveBack="true" />
+            <Authors use="false" saveBack="false" />
+            <Owners>false</Owners>
+            <Description use="false" saveBack="false" />
+            <ReleaseNotes>false</ReleaseNotes>
+            <Summary>false</Summary>
+            <Language use="false" saveBack="false" />
+            <ProjectUrl>false</ProjectUrl>
+            <IconUrl>false</IconUrl>
+            <LicenseUrl>false</LicenseUrl>
+            <Copyright use="false" saveBack="false" />
+            <Tags>false</Tags>
+            <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+            <DevelopmentDependency>false</DevelopmentDependency>
+            <Dependencies>false</Dependencies>
+          </Metadata>
+          <Files useFromSettings="false" />
+        </NuSpecOptions>
+      </NuGetOptions>
+    </ProjectOption>
+    <ProjectOption identifier="CS">
+      <GeneralOptions>
+        <Increment>None</Increment>
+        <HandleIncrementOverflow>false</HandleIncrementOverflow>
+      </GeneralOptions>
+      <MsBuildOptions>
+        <Usage>
+          <Optimize useage="Project" value="false" />
+          <DebugConstants useage="None" />
+          <DebugInfo useage="Project" />
+        </Usage>
+      </MsBuildOptions>
+      <NuGetOptions>
+        <GeneralOptions>
+          <DependencyUsage>Any</DependencyUsage>
+        </GeneralOptions>
+        <NuSpecOptions>
+          <Metadata>
+            <Id use="false" saveBack="true" />
+            <Version use="false" saveBack="true" />
+            <Title use="false" saveBack="true" />
+            <Authors use="false" saveBack="true" />
+            <Owners>false</Owners>
+            <Description use="true" saveBack="true" />
+            <ReleaseNotes>true</ReleaseNotes>
+            <Summary>false</Summary>
+            <Language use="false" saveBack="true" />
+            <ProjectUrl>false</ProjectUrl>
+            <IconUrl>false</IconUrl>
+            <LicenseUrl>false</LicenseUrl>
+            <Copyright use="false" saveBack="true" />
+            <Tags>false</Tags>
+            <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+            <DevelopmentDependency>false</DevelopmentDependency>
+            <Dependencies>false</Dependencies>
+          </Metadata>
+          <Files useFromSettings="false" />
+        </NuSpecOptions>
+      </NuGetOptions>
+    </ProjectOption>
+    <ProjectOption identifier="VB">
+      <GeneralOptions>
+        <Increment>None</Increment>
+        <HandleIncrementOverflow>false</HandleIncrementOverflow>
+      </GeneralOptions>
+      <MsBuildOptions>
+        <Usage>
+          <Optimize useage="Project" value="false" />
+          <DebugConstants useage="None" />
+          <DebugInfo useage="Project" />
+        </Usage>
+      </MsBuildOptions>
+      <NuGetOptions>
+        <GeneralOptions>
+          <DependencyUsage>Any</DependencyUsage>
+        </GeneralOptions>
+        <NuSpecOptions>
+          <Metadata>
+            <Id use="false" saveBack="false" />
+            <Version use="false" saveBack="false" />
+            <Title use="false" saveBack="false" />
+            <Authors use="false" saveBack="false" />
+            <Owners>false</Owners>
+            <Description use="false" saveBack="false" />
+            <ReleaseNotes>false</ReleaseNotes>
+            <Summary>false</Summary>
+            <Language use="false" saveBack="false" />
+            <ProjectUrl>false</ProjectUrl>
+            <IconUrl>false</IconUrl>
+            <LicenseUrl>false</LicenseUrl>
+            <Copyright use="false" saveBack="false" />
+            <Tags>false</Tags>
+            <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+            <DevelopmentDependency>false</DevelopmentDependency>
+            <Dependencies>false</Dependencies>
+          </Metadata>
+          <Files useFromSettings="false" />
+        </NuSpecOptions>
+      </NuGetOptions>
+    </ProjectOption>
+  </ProjectOptions>
+</Configuration>

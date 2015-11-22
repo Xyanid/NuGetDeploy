@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TargetFrameworkProfile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EEFC2DAD-4634-4FE4-BF48-94151257C719}</ProjectGuid>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xyanid.VisualStudioExtension.NuGetDeploy</RootNamespace>
+    <AssemblyName>Xyanid.VisualStudioExtension.NuGetDeploy</AssemblyName>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>Xyanid.VisualStudioExtension.NuGetDeploy.pfx</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\..\xyanidRules.ruleset</CodeAnalysisRuleSet>
+    <CopyVsixExtensionFiles>False</CopyVsixExtensionFiles>
+    <DocumentationFile>bin\Debug\Xyanid.VisualStudioExtension.NuGetDeploy.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\..\xyanidRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.11.0">
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextManager.Interop" />
+    <Reference Include="Microsoft.VisualStudio.Shell.11.0" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.11.0" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VSLangProj, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xyanid.Common, Version=2.2.0.0, Culture=neutral, PublicKeyToken=a09ad98e8579b519, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xyanid.Common.2.2.0.0\lib\net45\Xyanid.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xyanid.Winforms, Version=1.0.1.0, Culture=neutral, PublicKeyToken=6eb58f1addca7bb7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xyanid.Winforms.1.0.1.0\lib\net45\Xyanid.Winforms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="EnvDTE">
+      <Guid>{80CC9F66-E7D8-4DDD-85B6-D9E6CD0E93E2}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="EnvDTE100">
+      <Guid>{26AD1324-4B7C-44BC-84F8-B86AED45729F}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="EnvDTE80">
+      <Guid>{1A31287A-4D7D-413E-8E32-3B374931BD89}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="EnvDTE90">
+      <Guid>{2CE2370E-D744-4936-A090-3FFFE667B0E1}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.VisualStudio.CommandBars">
+      <Guid>{1CBA492E-7263-47BB-87FE-639000619B15}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Exceptions\BuildNuGetPackageFailedExceptions.cs" />
+    <Compile Include="Classes\Exceptions\NoNuGetExecutableExceptions.cs" />
+    <Compile Include="Classes\Exceptions\ProjectBuildFailedException.cs" />
+    <Compile Include="Classes\Exceptions\ProjectIsBeingDeployedException.cs" />
+    <Compile Include="Classes\Exceptions\ProjectNoSupportedException.cs" />
+    <Compile Include="Classes\Exceptions\PublishNuGetPackageFailedExceptions.cs" />
+    <Compile Include="Classes\Exceptions\SingletonException.cs" />
+    <Compile Include="Classes\Exceptions\UnkownMonikerException.cs" />
+    <Compile Include="Classes\Exceptions\ProjectAnalyseFailedException.cs" />
+    <Compile Include="Classes\Singletons\ExtensionManager.cs" />
+    <Compile Include="Classes\Configuration\ProjectInformation.cs" />
+    <Compile Include="Utils\TestUtil.cs" />
+    <Compile Include="Definitions\Constants.cs" />
+    <Compile Include="Definitions\Enumerations.cs" />
+    <Compile Include="Deployment\BuildOptions.cs" />
+    <Compile Include="Deployment\Container\DeploymentInformation.cs" />
+    <Compile Include="Deployment\Container\PackageInformation.cs" />
+    <Compile Include="Deployment\Threading\BaseBackgroundWorker.cs" />
+    <Compile Include="Deployment\Threading\DeployWorker.cs" />
+    <Compile Include="Deployment\Threading\AnalyseWorker.cs" />
+    <Compile Include="Deployment\Threading\SaveWorker.cs" />
+    <Compile Include="Interfaces.cs" />
+    <Compile Include="Classes\Singletons\LoggingManager.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\ProjectConfigurations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Dialogs\ProjectConfigurations.Designer.cs">
+      <DependentUpon>ProjectConfigurations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListItems\NuGetDependencyGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ListItems\NuGetDependencyGroup.Designer.cs">
+      <DependentUpon>NuGetDependencyGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListItems\NuGetDependency.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ListItems\NuGetDependency.Designer.cs">
+      <DependentUpon>NuGetDependency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NuGet\CreateNuGetTarget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NuGet\CreateNuGetTarget.Designer.cs">
+      <DependentUpon>CreateNuGetTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\Base\BasePage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\General\GeneralPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\General\GeneralPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\General\GeneralView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\General\GeneralView.Designer.cs">
+      <DependentUpon>GeneralView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\NuSpec\FilesPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\MsBuild\UsagesPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Options\General\NuGet\TargetsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\NuSpec\MetadataPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Options\General\MsBuild\PathsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Singletons\OptionsManager.cs" />
+    <Compile Include="Utils\ExtensionUtil.cs" />
+    <Compile Include="Guids.cs" />
+    <Compile Include="VSPackage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Xml\Options\Convert\BaseVersion.cs" />
+    <Compile Include="Xml\Options\Convert\Version_1_2_0_0.cs" />
+    <Compile Include="Xml\Options\Convert\Version_1_1_0_0.cs" />
+    <Compile Include="Xml\Options\Project\NuGet\General\Options.cs" />
+    <Compile Include="Xml\Options\Project\NuGet\NuSpec\MetadataValue.cs" />
+    <Compile Include="Views\NuGet\AddRepoInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NuGet\AddRepoInfoDialog.Designer.cs">
+      <DependentUpon>AddRepoInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\DeploymentProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Dialogs\DeploymentProcess.Designer.cs">
+      <DependentUpon>DeploymentProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\Base\Interfaces\IBaseView.cs" />
+    <Compile Include="Views\Options\Project\General\GeneralView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\General\GeneralView.Designer.cs">
+      <DependentUpon>GeneralView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\NuSpec\FilesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\NuSpec\FilesView.Designer.cs">
+      <DependentUpon>FilesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\Project\MsBuild\UsagesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\MsBuild\UsagesView.Designer.cs">
+      <DependentUpon>UsagesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\General\NuGet\TargetsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\General\NuGet\TargetsView.Designer.cs">
+      <DependentUpon>TargetsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\NuSpec\MetadataView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\Project\NuGet\NuSpec\MetadataView.Designer.cs">
+      <DependentUpon>MetadataView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Options\General\MsBuild\PathsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\General\MsBuild\PathsView.Designer.cs">
+      <DependentUpon>PathsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dialogs\DeploymentPrepare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Dialogs\DeploymentPrepare.Designer.cs">
+      <DependentUpon>DeploymentPrepare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xml\NuGet\NuSpec\Group.cs" />
+    <Compile Include="Xml\NuGet\NuSpec\Dependency.cs" />
+    <Compile Include="Xml\NuGet\NuSpec\File.cs" />
+    <Compile Include="Xml\NuGet\NuSpec\FrameworkAssembly.cs" />
+    <Compile Include="Xml\NuGet\NuSpec\Metadata.cs" />
+    <Compile Include="Xml\NuGet\NuSpec\Package.cs" />
+    <Compile Include="Xml\NuGet\Package\Package.cs" />
+    <Compile Include="Xml\NuGet\Package\Packages.cs" />
+    <Compile Include="Xml\Parsing\Element.cs" />
+    <Compile Include="Xml\Parsing\XmlReader.cs" />
+    <Compile Include="Xml\Options\Options.cs" />
+    <Compile Include="Xml\Options\General\NuGet\Server.cs" />
+    <Compile Include="Xml\Options\General\NuGet\Target.cs" />
+    <Compile Include="Xml\Options\General\Options.cs" />
+    <Compile Include="Xml\Options\General\MsBuild\Options.cs" />
+    <Compile Include="Xml\Options\General\NuGet\Options.cs" />
+    <Compile Include="Xml\Options\Project\MsBuild\Options.cs" />
+    <Compile Include="Xml\Options\Project\General\Options.cs" />
+    <Compile Include="Xml\Options\Project\NuGet\Options.cs" />
+    <Compile Include="Xml\Options\Project\NuGet\NuSpec\FileInclude.cs" />
+    <Compile Include="Xml\Options\Project\NuGet\NuSpec\FileOption.cs" />
+    <Compile Include="Xml\Options\Project\NuGet\NuSpec\Metadata.cs" />
+    <Compile Include="Xml\Options\Project\NuGet\NuSpec\Options.cs" />
+    <Compile Include="Xml\Options\Project\Options.cs" />
+    <Compile Include="Xml\Options\UsageOption.cs" />
+    <Compile Include="Xml\Options\Project\MsBuild\Usage.cs" />
+    <Compile Include="Views\Options\General\NuGet\PathAndServersPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Package.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PkgCmdID.cs" />
+    <Compile Include="Views\Options\General\NuGet\PathAndServersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Options\General\NuGet\PathAndServersView.Designer.cs">
+      <DependentUpon>PathAndServersView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Dialogs\ProjectConfigurations.resx">
+      <DependentUpon>ProjectConfigurations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ListItems\NuGetDependency.resx">
+      <DependentUpon>NuGetDependency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ListItems\NuGetDependencyGroup.resx">
+      <DependentUpon>NuGetDependencyGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NuGet\AddRepoInfoDialog.resx">
+      <DependentUpon>AddRepoInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Dialogs\DeploymentProcess.resx">
+      <DependentUpon>DeploymentProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NuGet\CreateNuGetTarget.resx">
+      <DependentUpon>CreateNuGetTarget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\Project\General\GeneralView.resx">
+      <DependentUpon>GeneralView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\Project\NuGet\General\GeneralView.resx">
+      <DependentUpon>GeneralView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\Project\NuGet\NuSpec\FilesView.resx">
+      <DependentUpon>FilesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\Project\MsBuild\UsagesView.resx">
+      <DependentUpon>UsagesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\General\NuGet\TargetsView.resx">
+      <DependentUpon>TargetsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\Project\NuGet\NuSpec\MetadataView.resx">
+      <DependentUpon>MetadataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\General\MsBuild\PathsView.resx">
+      <DependentUpon>PathsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Options\General\NuGet\PathAndServersView.resx">
+      <DependentUpon>PathAndServersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Dialogs\DeploymentPrepare.resx">
+      <DependentUpon>DeploymentPrepare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VSPackage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Xyanid.VisualStudioExtension.NuGetDeploy.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="Package.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Xml\Options\Convert\Files\1.2.0.0.xml" />
+    <None Include="Resources\increaseDisabled.png" />
+    <None Include="Resources\increase.png" />
+    <None Include="Resources\saveDisabled.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\getFormNuSpecDisabled.png" />
+    <None Include="Resources\getFormNuSpec.png" />
+    <Resource Include="Xml\Options\Convert\Files\1.1.0.0.xml" />
+    <Resource Include="Resources\Icons\info.png" />
+    <Resource Include="Resources\Icons\warning.png" />
+    <Resource Include="Miscellaneous\Changelog.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\config128x128.png" />
+    <Content Include="Resources\config16x16.png" />
+    <Content Include="Resources\config64x64.png" />
+    <Content Include="Resources\deploy128x128.png" />
+    <Content Include="Resources\deploy16x16.png" />
+    <Content Include="Resources\deploy64x64.png" />
+    <Content Include="Miscellaneous\licenseZlib.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Miscellaneous\ReleaseNotes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Resource Include="Resources\config.ico" />
+    <Content Include="Resources\config256x256.png" />
+    <Content Include="Resources\config32x32.png" />
+    <Resource Include="Resources\deploy.ico" />
+    <Content Include="Resources\deploy256x256.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\deploy32x32.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Xml\Options\General\Project\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <UseCodebase>true</UseCodebase>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
