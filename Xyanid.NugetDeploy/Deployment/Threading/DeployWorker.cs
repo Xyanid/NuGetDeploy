@@ -267,7 +267,7 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 			//-----push the nuPkg file to the server
 			string result;
 			string error;
-			string command = string.Format(@" ""{0}"" push ""{1}"" -s ""{2}"" ""{3}"" ",
+			string command = string.Format(@" ""{0}"" push ""{1}"" -source ""{2}"" ""{3}"" ",
 											OptionsManager.Instance.Configuration.GeneralOptions.NuGetOptions.ExePath,
 											nuPkgFilePath,
 											url,
