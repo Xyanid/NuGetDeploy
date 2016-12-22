@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="f2c740ea-fa27-483a-8228-5971d232cbc2" Version="1.4.4.0" Language="en-US" Publisher="Xyanid" />
+    <Identity Id="f2c740ea-fa27-483a-8228-5971d232cbc2" Version="1.4.5.0" Language="en-US" Publisher="Xyanid" />
     <DisplayName>NuGet Deploy</DisplayName>
     <Description xml:space="preserve">This extension enables you to deploy a class library straight from visual studio to a NuGet server via a right click command.</Description>
     <License>Miscellaneous\licenseZlib.txt</License>
