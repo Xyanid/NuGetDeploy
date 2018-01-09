@@ -1,3 +1,6 @@
+1.4.5.1 - 2018.01.09 - wirblAxe
+- added (some) VS2017 support (untested in pre VS2017 versions)
+
 1.4.5.0 - 2016.12.22 - Xyanid
 - fixed nuget deploy using -s option which was ambiguous for nuget 3.5, thx to AlyceS
 
