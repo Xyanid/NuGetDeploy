@@ -1,3 +1,13 @@
+1.4.5.3 - 2018.01.18 - wirblAxe
+- changed logging to RollingMode.Date, and file name to date
+- added some exception logging
+- checks the BuildProject ExecuteCommands result for erros - as MsBuild redirects errors to stdOut - and ExecuteCommand seems to ignore Process.ExitCode
+- checks if expected output file actually is created
+
+
+1.4.5.2 - 2018.01.09 - wirblAxe
+- removes any existing {current version}.nupkg file, before the "pack" command
+
 1.4.5.1 - 2018.01.09 - wirblAxe
 - added (some) VS2017 support (untested in pre VS2017 versions)
 

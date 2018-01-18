@@ -72,12 +72,11 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Definitions
 		public static readonly RollingFileAppender Log4NetAppender = new RollingFileAppender()
 		{
 			AppendToFile = true,
-			File = Path.Combine(ExtensionManager.Instance.ExtensionHomePath, "logfile.log"),
-			Layout = Log4NetLayout,
-			MaxSizeRollBackups = 1,
-			MaximumFileSize = "100MB",
-			RollingStyle = RollingFileAppender.RollingMode.Size,
-			StaticLogFileName = true
+			File = Path.Combine(ExtensionManager.Instance.ExtensionHomePath, "logs", $"{DateTime.Today:yyyy-MM-dd}.log" ), // {DateTime.Now.Date:yyyyMMdd}.log"
+            Layout = Log4NetLayout,
+			RollingStyle = RollingFileAppender.RollingMode.Date,
+            DatePattern = "yyyy-MM-dd'.log'",
+			//PreserveLogFileNameExtension = true
 		};
 
 		#endregion
