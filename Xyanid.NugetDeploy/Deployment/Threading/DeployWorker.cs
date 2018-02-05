@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Xyanid.Common.Util;
 using Xyanid.VisualStudioExtension.NuGetDeploy.Classes.Exceptions;
@@ -86,13 +87,13 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 					//-----build project
 					if (!_worker.CancellationPending)
 					{
-						_worker.ReportProgress(0 * interval, "Building project...");
-						BuildProject(deployInfo);
-					}
+                        _worker.ReportProgress( 0 * interval, "Building project..." );
+                        BuildProject( deployInfo );
+                    }
 					//----check if only the build was needed
 					if (deployInfo.Step == Step.Build)
 					{
-						e.Result = string.Format("project successfully build at location {0}", deployInfo.Build.BuildPath);
+						e.Result = string.Format("\n * Project SUCCESSFULLY BUILT at location {0} \n", deployInfo.Build.BuildPath);
 						return;
 					}
 
@@ -106,7 +107,7 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 					//----check if only the packaing was needed
 					if (deployInfo.Step == Step.Package)
 					{
-						e.Result = string.Format("project successfully packaged at location {0}", deployInfo.Build.BuildPath);
+						e.Result = string.Format("\n * Project SUCCESSFULLY PACKAGED at location {0} \n", deployInfo.Build.BuildPath);
 						return;
 					}
 
@@ -116,11 +117,12 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 						_worker.ReportProgress(2 * interval, "Deploying NuGet package to server...");
 						PushNuGetPackage(deployInfo.NuGetServer.Url, ExtensionManager.Instance.Encryptor.Decrypt(deployInfo.NuGetServer.ApiKey), nuPkgFilePath);
 					}
-					e.Result = string.Format("package successfully pushed to server {0}", deployInfo.NuGetServer.Url);
+					e.Result = string.Format("\n * Package SUCCESSFULLY PUSHED to server {0}", deployInfo.NuGetServer.Url);
 				}
-				catch (Exception)
+				catch (Exception ex)
 				{
-					throw;
+                    LoggingManager.Instance.Logger.Error( ex );
+                    throw;
 				}
 				finally
 				{
@@ -146,17 +148,12 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 			LoggingManager.Instance.Logger.Debug("building project");
 
 			//-----start the build process of the project
-			string result;
-			string error;
 			if (!Directory.Exists(deployInfo.Build.BuildPath))
 			{
 				LoggingManager.Instance.Logger.Debug(string.Format("creating directory {0}", deployInfo.Build.BuildPath));
 				Directory.CreateDirectory(deployInfo.Build.BuildPath);
 			}
-
-			string buildFileFullname = Path.Combine(deployInfo.Build.BuildPath, deployInfo.OutputFileName);
-
-			StringBuilder command = new StringBuilder(string.Format(@"{0} ""{1}"" ", deployInfo.MsBuildFullName, deployInfo.ProjectFullName));
+			StringBuilder command = new StringBuilder(string.Format(@"""{0}"" ""{1}"" ", deployInfo.MsBuildFullName, deployInfo.ProjectFullName));
 
 			command.Append(string.Format(@" /p:Configuration=""{0}"" ", deployInfo.Build.ConfigurationName));
 
@@ -176,11 +173,9 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 			if (deployInfo.Build.DocumentationFile != null)
 				command.Append(string.Format(@" /p:DocumentationFile=""{0}"" ", deployInfo.Build.DocumentationFile.Source));
 
-			LoggingManager.Instance.Logger.Debug(string.Format("executing command [{0}]", command.ToString()));
-			CommandUtil.ExecuteCommand(command.ToString(), new string[] { "/C" }, out result, out error);
+		    var buildFileFullname = Execute( command.ToString(), out string error, expectedOutputFilePattern: deployInfo.OutputFileName, path: deployInfo.Build.BuildPath, checkResultForErros: true);
 
-			//-----make sure the build process was successfull
-			if (!string.IsNullOrEmpty(error) || !File.Exists(buildFileFullname))
+            if (!string.IsNullOrEmpty(error) || !File.Exists(buildFileFullname))
 			{
 				//HACK should be reworked since it is not very save, but currently the only way
 				if (string.IsNullOrEmpty(error) && deployInfo.ProjectOptions.Identifier == Enumerations.ProjectIdentifier.CPP)
@@ -209,35 +204,93 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 						}
 					}
 				}
-				throw new ProjectBuildFailedExceptions(!string.IsNullOrEmpty(error) ? string.Format("An Error occured during the build process: {0}", error) :
-																						string.Format("Could not create file: {0}", buildFileFullname));
+                throw new ProjectBuildFailedExceptions( !string.IsNullOrEmpty( error ) ? string.Format( "An Error occured during the build process: {0}", error ) :
+                                                                                        string.Format( "Could not create file: {0}", buildFileFullname ) );
 			}
 			LoggingManager.Instance.Logger.Debug("building project finished");
 		}
 
-		/// <summary>
+	    private string Execute( string command, out string error, string expectedOutputFilePattern = null, string path = null, bool checkResultForErros = false )
+	    {
+            return Execute( new[] { command }, out error, expectedOutputFilePattern: expectedOutputFilePattern, path: path, checkResultForErros: checkResultForErros);
+	    }
+	    private string Execute( string[] commands, out string error, string expectedOutputFilePattern = null, string path = null, bool checkResultForErros = false)
+	    {
+	        string result;
+	        LoggingManager.Instance.Logger.Debug($"executing command(s) [{string.Join("] and [", commands)}]");
+	        var commandStartTime = DateTime.Now;
+	        CommandUtil.ExecuteCommands(commands, new string[] {"/C"}, out result, out error);
+
+	        if (checkResultForErros)
+            {
+                //     check the ExecuteCommands out result variable for erros
+                //     commands might redirect errors to stdOut (MsBuild.exe specifically - and ExecuteCommand seems to ignore Process.ExitCode):
+                if ( string.IsNullOrEmpty(error) && Regex.IsMatch(result, pattern: @"(: error )|(\s+Build FAILED\b)"))
+                {
+                    error = result;
+                    result = null;
+                }
+            }
+
+            if (expectedOutputFilePattern == null)
+            {
+                Logg( result, error );
+                return null;
+            }
+            //-----make sure a new output file was created
+	        string outputFileFullname = null;
+	        try
+	        {
+	            var expectedMinTime = commandStartTime.ToUniversalTime().AddSeconds( -1 );
+	            var directoryInfo = new DirectoryInfo( path );
+	            var fileInfos = directoryInfo.GetFiles( expectedOutputFilePattern );
+	            foreach (var expectedFile in fileInfos.OrderByDescending( f => f.CreationTime ))
+	            {
+	                if (expectedFile.LastWriteTimeUtc > expectedMinTime)
+	                {
+	                    outputFileFullname = expectedFile.FullName;
+	                    break;
+                    }
+                }
+            }
+            catch (Exception ex)
+	        {
+	            LoggingManager.Instance.Logger.Warn( $"Error in GetLastFile({path}, {expectedOutputFilePattern}, {commandStartTime}, {1})", ex );
+	        }
+	        Logg(result, error, doWarnResult: outputFileFullname == null);
+	        return outputFileFullname;
+	    }
+
+	    /// <summary>
 		/// builds the nuPkg file
 		/// </summary>
 		/// <returns>true if the nuPkg file was build, false otherwise</returns>
 		private void BuildNuGetPackage(DeploymentInformation deployInfo, ref string nuPkgFilePath)
 		{
 			LoggingManager.Instance.Logger.Debug("creating nupkg file");
-
-			//-----create the .nuPkg file in the folder
-			string result;
-			string error;
-			nuPkgFilePath = Path.Combine(deployInfo.Build.BuildPath, string.Format("{0}.{1}.nupkg", deployInfo.NuSpecPackage.Metadata.Id, deployInfo.NuSpecPackage.Metadata.Version));
-			string commandOne = string.Format(@"cd /D ""{0}"" ", deployInfo.Build.BuildPath);
-			string commandTwo = string.Format(@" ""{0}"" pack ""{1}"" ", OptionsManager.Instance.Configuration.GeneralOptions.NuGetOptions.ExePath, deployInfo.NuSpecFileFullName);
-
-			LoggingManager.Instance.Logger.Debug(string.Format("executing command [{0}]  and [{1}]", commandOne, commandTwo));
-			CommandUtil.ExecuteCommands(new string[] { commandOne, commandTwo }, new string[] { "/C" }, out result, out error);
-
-			//-----make sure the nuPkg file was build
-			if (!string.IsNullOrEmpty(error) || !File.Exists(nuPkgFilePath))
+            //-----create the .nuPkg file in the folder
+            //-----first delete any "current" versions of the .nuPkg file by wildcard ( because if revision == "0" that 
+            //-----  4:th position ".0" in the file name has probably been omitted by the "NuGet pack" command )
+            string nuPkgWildcard = string.Format( "{0}.*.nupkg", deployInfo.NuSpecPackage.Metadata.Id );
+            try
+            {
+                foreach (var f in Directory.GetFiles(deployInfo.Build.BuildPath, nuPkgWildcard))
+                    File.Delete(f);
+            }
+            catch (Exception ex)
+            {
+                LoggingManager.Instance.Logger.Warn($@"Error deleting previous ""{nuPkgWildcard}"" files in ""{deployInfo.Build.BuildPath}""" , ex );
+            }
+            var symbolsParam = (deployInfo.Build.DebugInfo == Resources.DebugInfoPdbOnly || deployInfo.Build.DebugInfo == Resources.DebugInfoFull) ? "-Symbols" : "";
+            var commands = new string[]
+            {
+                $@"cd /D ""{deployInfo.Build.BuildPath}""",
+                $@"""{OptionsManager.Instance.Configuration.GeneralOptions.NuGetOptions.ExePath}"" pack ""{deployInfo.NuSpecFileFullName}"" {symbolsParam}"
+            };
+		    nuPkgFilePath = Execute( commands, out string error, expectedOutputFilePattern: nuPkgWildcard, path: deployInfo.Build.BuildPath);
+		    if (string.IsNullOrEmpty(nuPkgFilePath))
 			{
-				throw new BuildNuGetPackageFailedExceptions(!string.IsNullOrEmpty(error) ? string.Format("An Error occured while creating the nuPkg file: {0}", error) :
-																							string.Format("Could not create nuPkg file: {0}", nuPkgFilePath));
+                throw new BuildNuGetPackageFailedExceptions(string.Format("Could not create nuPkg file: {0}.{1}.nupkg", deployInfo.NuSpecPackage.Metadata.Id, deployInfo.NuSpecPackage.Metadata.Version ));
 			}
 
 			//-----delete the nuSpec file is possible
@@ -252,11 +305,25 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 					LoggingManager.Instance.Logger.Warn(ex);
 				}
 			}
-
 			LoggingManager.Instance.Logger.Debug("creating nupkg file finished");
-		}
+        }
 
-		/// <summary>
+	    private void Logg(string result, string error, bool doWarnResult = false)
+        {
+            bool isError = !string.IsNullOrEmpty( error );
+            if (isError)
+                LoggingManager.Instance.Logger.Warn(error);
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (isError || doWarnResult)
+                    LoggingManager.Instance.Logger.Warn(result);
+                else
+                    LoggingManager.Instance.Logger.Info(result);
+            }
+        }
+
+	    /// <summary>
 		/// pushes the nuPkg file to the given url
 		/// </summary>
 		/// <returns>true if the push was successfull, false otherwise</returns>
@@ -265,22 +332,17 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 			LoggingManager.Instance.Logger.Debug("pushing nupkg file");
 
 			//-----push the nuPkg file to the server
-			string result;
-			string error;
-			string command = string.Format(@" ""{0}"" push ""{1}"" -source ""{2}"" ""{3}"" ",
+		    string command = string.Format(@" ""{0}"" push ""{1}"" -source ""{2}"" ""{3}"" ",
 											OptionsManager.Instance.Configuration.GeneralOptions.NuGetOptions.ExePath,
 											nuPkgFilePath,
 											url,
 											apiKey);
-			LoggingManager.Instance.Logger.Debug(string.Format("Executing command [{0}]", command));
-			CommandUtil.ExecuteCommand(command, new string[] { "/C" }, out result, out error);
+            Execute( command, out string error );
+		    if (!string.IsNullOrEmpty(error))
+		        throw new PublishNuGetPackageFailedExceptions( string.Format("An Error occured while deploying the nuPkg file: {0}", error));
 
-			//-----show a message about success or error
-			if (!string.IsNullOrEmpty(error))
-				throw new PublishNuGetPackageFailedExceptions(string.Format("An Error occured while deploying the nuPkg file: {0}", error));
-
-			//-----delete the nuPkg file is possible
-			try
+		    //-----delete the nuPkg file is possible
+            try
 			{
 				File.Delete(nuPkgFilePath);
 			}
@@ -289,8 +351,8 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Deployment.Threading
 				LoggingManager.Instance.Logger.Warn(ex);
 			}
 			LoggingManager.Instance.Logger.Debug("pushing nupkg file finished");
-		}
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

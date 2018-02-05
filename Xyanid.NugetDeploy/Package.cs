@@ -25,7 +25,7 @@ namespace Xyanid.VisualStudioExtension.NuGetDeploy.Packages
 	[PackageRegistration(UseManagedResourcesOnly = true)]
 	// This attribute is used to register the information needed to show this package
 	// in the Help/About dialog of Visual Studio.
-	[InstalledProductRegistration("#110", "#112", "1.4.5.0", IconResourceID = 400)]
+	[InstalledProductRegistration("#110", "#112", "1.4.5.3", IconResourceID = 400)]
 	//-----this attribute is needed to let the shell know that this package exposes some menus.
 	[ProvideMenuResource("Menus.ctmenu", 1)]
 	//-----this attribute will create an option page for the package under Tools -> Option, it is possible to have more then one of those if needed

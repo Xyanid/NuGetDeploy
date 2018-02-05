@@ -120,6 +120,9 @@
   <metadata name="_toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>159, 1</value>
   </metadata>
+  <metadata name="_toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>159, 1</value>
+  </metadata>
   <data name="_uiNuSpecMetadataId.ToolTip" xml:space="preserve">
     <value>The unique identifier for the package. This is the package name that is shown when packages are listed using the Package Manager Console. 
 These are also used when installing a package using the Install-Package command within the Package Manager Console. 
@@ -521,7 +524,7 @@ using searches in the Add Package Reference dialog box or filtering in the Packa
     <value>254, 1</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>38</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

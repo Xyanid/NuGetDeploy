@@ -1,2 +1,5 @@
-1.4.5.0 - 2016.12.22 - Xyanid
-- fixed nuget deploy using -s option which was ambiguous for nuget 3.5, thx to AlyceS
+1.4.5.3 - 2018.01.18 - wirblAxe
+- changed logging to RollingMode.Date, and file name to date
+- added some exception logging
+- checks the BuildProject ExecuteCommands result for erros - as MsBuild redirects errors to stdOut - and ExecuteCommand seems to ignore Process.ExitCode
+- checks if expected output file actually is created

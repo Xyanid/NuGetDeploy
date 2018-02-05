@@ -29,8 +29,8 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.4.5.0")]
-[assembly: AssemblyFileVersion("1.4.5.0")]
+[assembly: AssemblyVersion( "1.4.5.3" )]
+[assembly: AssemblyFileVersion( "1.4.5.3" )]
 
 [assembly: InternalsVisibleTo("Xyanid.VisualStudioExtension.NuGetDeploy_IntegrationTests, PublicKey=00240000048000009400000006020000002400005253413100040000010001002dfa1fc235829e063ce54a30e4f07b35360be822cf3e89da86e80fa55357d96d178009bb755be5f42b9acb176f8b9533c6d60e6b8869927d7f52004d53ca1ae0bc32d0e723ffbfe81607ce181bbe84854227bf9ff3fe52134c3e9fd94596945eaab4be208f957ef5560b8b0a2d724c92fd359a9bd270ae0cf89125588a0789f7")]
 [assembly: InternalsVisibleTo("Xyanid.VisualStudioExtension.NuGetDeploy_UnitTests, PublicKey=00240000048000009400000006020000002400005253413100040000010001002dfa1fc235829e063ce54a30e4f07b35360be822cf3e89da86e80fa55357d96d178009bb755be5f42b9acb176f8b9533c6d60e6b8869927d7f52004d53ca1ae0bc32d0e723ffbfe81607ce181bbe84854227bf9ff3fe52134c3e9fd94596945eaab4be208f957ef5560b8b0a2d724c92fd359a9bd270ae0cf89125588a0789f7")]
